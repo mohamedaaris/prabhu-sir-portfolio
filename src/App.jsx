@@ -89,7 +89,7 @@ function App() {
         {/* Footer */}
         <footer className="footer">
           <p className="footer-text">
-            © {new Date().getFullYear()} Dr. Prabhu Jayagopal · Academic Research Portfolio
+            © {new Date().getFullYear()} Dr. Savari Prabhu · Academic Research Portfolio
           </p>
         </footer>
       </div>

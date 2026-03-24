@@ -72,7 +72,7 @@ export default function Publications() {
 
   const handleCite = (paper, journalName) => {
     const bib = `@article{prabhu${paper.year}${paper.id},\n  title={${paper.title}},\n  author={Jayagopal, Prabhu},\n  journal={${journalName}},\n  year={${paper.year}}\n}`;
-    navigator.clipboard.writeText(bib).catch(() => {});
+    navigator.clipboard.writeText(bib).catch(() => { });
   };
 
   return (
@@ -155,7 +155,6 @@ export default function Publications() {
                           {paper.citations}
                         </span>
                         <div className="flex gap-1.5 shrink-0">
-                          <a href={paper.pdf} className="paper-btn">PDF</a>
                           <button className="paper-btn" onClick={(e) => { e.stopPropagation(); handleCite(paper, journal.name); }}>
                             Cite
                           </button>

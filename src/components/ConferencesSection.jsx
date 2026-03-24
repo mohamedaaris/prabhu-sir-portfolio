@@ -1,6 +1,20 @@
-import { conferences } from "../data/professorData";
+import { useState } from "react";
+import { conferences, academicActivities } from "../data/professorData";
 
 export default function ConferencesSection() {
+  const [activeTab, setActiveTab] = useState(null);
+
+  const categories = [
+    { id: "chaired", label: "Sessions Chaired", data: academicActivities.chaired },
+    { id: "presentedAbroad", label: "Presented (Abroad)", data: academicActivities.presentedAbroad },
+    { id: "presentedIndia", label: "Presented (India)", data: academicActivities.presentedIndia },
+    { id: "attended", label: "Workshops Attended", data: academicActivities.attended },
+    { id: "guestLectures", label: "Guest Lectures Given", data: academicActivities.guestLectures },
+    { id: "organized", label: "Workshops Organized", data: academicActivities.organized },
+    { id: "collaborators", label: "Collaborators", data: academicActivities.collaborators },
+    { id: "supervision", label: "PhD Supervision", data: academicActivities.researchSupervision.details.map(d => `${d.name} (${d.role}) - ${d.title} (Awarded: ${d.date})`) },
+  ];
+
   return (
     <section className="portfolio-section" id="conferences">
       <div className="section-header">
@@ -30,6 +44,46 @@ export default function ConferencesSection() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="academic-extra-section mt-12">
+        <div className="flex flex-wrap gap-2 justify-center mb-8">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              className={`filter-chip ${activeTab === cat.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(activeTab === cat.id ? null : cat.id)}
+            >
+              {cat.label} ({cat.data.length})
+            </button>
+          ))}
+        </div>
+
+        {activeTab && (
+          <div className="glass-card overflow-hidden transition-all duration-500 reveal">
+            <div className="p-6 border-b border-white/5 bg-white/5 flex justify-between items-center">
+              <h3 className="font-heading text-lg cyan">{categories.find(c => c.id === activeTab).label}</h3>
+              <button 
+                className="text-white/40 hover:text-white"
+                onClick={() => setActiveTab(null)}
+              >
+                Close
+              </button>
+            </div>
+            <div className="p-6 max-h-[400px] overflow-y-auto custom-scrollbar">
+              <ul className="space-y-4">
+                {categories.find(c => c.id === activeTab).data.map((item, i) => (
+                  <li key={i} className="flex gap-4 group">
+                    <span className="text-cyan-400 font-mono mt-1 opacity-50">{i + 1}.</span>
+                    <p className="text-sm text-white/70 group-hover:text-white transition-colors">
+                      {item}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

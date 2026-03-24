@@ -1037,7 +1037,22 @@ body {
 
 /* Intersection observer reveal */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--cyan-400);
+  border-radius: 10px;
+}
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {
