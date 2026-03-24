@@ -336,10 +336,13 @@ body {
 .glass-card {
   position: relative;
   padding: 1.4rem 1.6rem;
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-glass);
+  background: rgba(10, 20, 45, 0.25);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Glossy top/left edge effect */
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.03);
   border-radius: var(--radius-md);
   transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
   overflow: hidden;
@@ -348,18 +351,21 @@ body {
 .glass-card::before {
   content: ""; position: absolute;
   top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-glass-hover), transparent);
-  opacity: 0; transition: opacity 0.35s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0.2; transition: opacity 0.35s;
 }
 
 .glass-card:hover {
-  border-color: var(--border-glass-hover);
-  background: rgba(10,25,60,0.7);
-  box-shadow: 0 0 30px rgba(0,212,232,0.06), 0 12px 40px rgba(0,0,0,0.35);
-  transform: translateY(-2px);
+  border-color: rgba(0, 212, 232, 0.4);
+  background: rgba(10, 30, 80, 0.4);
+  box-shadow: 0 15px 50px rgba(0, 212, 232, 0.2), inset 0 0 30px rgba(255, 255, 255, 0.12);
+  transform: translateY(-6px) scale(1.01);
 }
 
-.glass-card:hover::before { opacity: 1; }
+.glass-card:hover::before {
+  opacity: 0.8;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 232, 0.8), transparent);
+}
 
 /* ── Journal Accordion ─────────────────────────────── */
 .journal-card {

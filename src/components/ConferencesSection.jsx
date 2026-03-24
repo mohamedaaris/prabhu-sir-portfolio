@@ -46,7 +46,7 @@ export default function ConferencesSection() {
         ))}
       </div>
 
-      <div className="academic-extra-section mt-12">
+      <div className="academic-extra-section mt-24 pt-8 border-t border-white/5 reveal">
         <div className="flex flex-wrap gap-2 justify-center mb-8">
           {categories.map((cat) => (
             <button
